@@ -73,13 +73,9 @@ public class RegisterFormTest {
         actions().scrollByAmount(0, -200).perform();
         $("#submit").click();
 
-
-        $(By.xpath("//td[text()='Student Name']/following-sibling::td"))
-                .shouldHave(text("Amir Dastan"));
-        $(By.xpath("//td[text()='Gender']/following-sibling::td"))
-                .shouldHave(text("Male"));
-        $(By.xpath("//td[text()='Mobile']/following-sibling::td"))
-                .shouldHave(text("0559118799"));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Amir Dastan"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("0559118799"));
 
         $("#closeLargeModal").click();
 
@@ -98,12 +94,9 @@ public class RegisterFormTest {
         $("#submit").click();
 
 
-        $(By.xpath("//td[text()='Student Name']/following-sibling::td"))
-                .shouldHave(text("Amir Dastan"));
-        $(By.xpath("//td[text()='Gender']/following-sibling::td"))
-                .shouldHave(text("Male"));
-        $(By.xpath("//td[text()='Mobile']/following-sibling::td"))
-                .shouldHave(text("0559118799"));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Amir Dastan"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("0559118799"));
 
         $("#closeLargeModal").click();
 
