@@ -3,10 +3,9 @@ package tests.examples;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import testdata.TextBoxData;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTest {
@@ -20,19 +19,19 @@ public class TextBoxTest {
     @Test
     void successfulFillFormTest() {
         open("https://demoqa.com/text-box");
-        $("[id=userName]").setValue("Aikerim");
-        $("[id=userEmail]").setValue("aikerim.879@gmail.com");
-        $("[id=currentAddress]").setValue("Nurkamal 14/2");
-        $("[id=permanentAddress]").setValue("Povarinskaya ");
+        $("[id=userName]").setValue(TextBoxData.userName);
+        $("[id=userEmail]").setValue(TextBoxData.userEmail);
+        $("[id=currentAddress]").setValue(TextBoxData.currentAddress);
+        $("[id=permanentAddress]").setValue(TextBoxData.permanentAddress);
         $("#submit").click();
 
         $("[id=output] [id=name]").scrollTo();
         actions().scrollByAmount(0, -200).perform();
 
-        $("[id=output] [id=name]").shouldHave(text("Aikerim"));
-        $("[id=output] [id=email]").shouldHave(text("aikerim.879@gmail.com"));
-        $("[id=output] [id=currentAddress]").shouldHave(text("Nurkamal 14/2"));
-        $("[id=output] [id=permanentAddress]").shouldHave(text("Povarinskaya"));
+        $("[id=output] [id=name]").shouldHave(text(TextBoxData.userName));
+        $("[id=output] [id=email]").shouldHave(text(TextBoxData.userEmail));
+        $("[id=output] [id=currentAddress]").shouldHave(text(TextBoxData.currentAddress));
+        $("[id=output] [id=permanentAddress]").shouldHave(text(TextBoxData.permanentAddress));
 
     }
 

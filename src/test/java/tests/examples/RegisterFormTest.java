@@ -3,12 +3,10 @@ package tests.examples;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import testdata.RegisterFormData;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -24,38 +22,38 @@ public class RegisterFormTest {
     @Test
     void filledFormTest(){
         open("/automation-practice-form");
-        $("[id=firstName]").setValue("Amir");
-        $("[id=lastName]").setValue("Dastan");
-        $("[id=userEmail]").setValue("amir@gmail.com");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("[id=userNumber]").setValue("0559118799");
+        $("[id=firstName]").setValue(RegisterFormData.userName);
+        $("[id=lastName]").setValue(RegisterFormData.lastname);
+        $("[id=userEmail]").setValue(RegisterFormData.userEmail);
+        $("#genterWrapper").$(byText(RegisterFormData.genterWrapper)).click();
+        $("[id=userNumber]").setValue(RegisterFormData.userNumber);
         $("[id=dateOfBirthInput]").click();
-        $(".react-datepicker__year-select").selectOption("1999");
-        $(".react-datepicker__month-select").selectOption("July");
-        $(".react-datepicker__month").$(byText("15")).click();
-        $("#subjectsInput").setValue("English").pressEnter();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("IMG_1075.JPG");;
-        $("[id=currentAddress]").setValue("Nurkamal 14/2");
+        $(".react-datepicker__year-select").selectOption(RegisterFormData.birthYear);
+        $(".react-datepicker__month-select").selectOption(RegisterFormData.birthMonth);
+        $(".react-datepicker__month").$(byText(RegisterFormData.birthDate)).click();
+        $("#subjectsInput").setValue(RegisterFormData.subjectsInput).pressEnter();
+        $("#hobbiesWrapper").$(byText(RegisterFormData.hobbiesWrapper)).click();
+        $("#uploadPicture").uploadFromClasspath(RegisterFormData.uploadPicture);;
+        $("[id=currentAddress]").setValue(RegisterFormData.currentAddress);
         $("#state").scrollTo();
         actions().scrollByAmount(0, -200).perform();
         $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$(byText(RegisterFormData.stateCity)).click();
         $("#city").click();
-        $("#stateCity-wrapper").$(byText("Gurgaon")).click();
+        $("#stateCity-wrapper").$(byText(RegisterFormData.stateCity2)).click();
         $("#submit").click();
 
 
-        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Amir Dastan"));
-        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("amir@gmail.com"));
-        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
-        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("0559118799"));
-        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text("15 July,1999"));
-        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text("English"));
-        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text("Sports"));
-        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text("IMG_1075.JPG"));
-        $(".table-responsive").$(byText("Address")).parent().shouldHave(text("Nurkamal 14/2"));
-        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text("NCR Gurgaon"));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text(RegisterFormData.userName));
+        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text(RegisterFormData.userEmail));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text(RegisterFormData.genterWrapper));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text(RegisterFormData.userNumber));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text(RegisterFormData.birthDate));
+        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text(RegisterFormData.subjectsInput));
+        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text(RegisterFormData.hobbiesWrapper));
+        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text(RegisterFormData.uploadPicture));
+        $(".table-responsive").$(byText("Address")).parent().shouldHave(text(RegisterFormData.currentAddress));
+        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text(RegisterFormData.stateCity));
 
         $("#closeLargeModal").click();
 
