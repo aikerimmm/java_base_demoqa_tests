@@ -4,14 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
-import testdata.TextBoxData;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
-import static testdata.TextBoxData.userEmail;
-import static testdata.TextBoxData.userName;
-import static testdata.TextBoxData.currentAddress;
-import static testdata.TextBoxData.permanentAddress;
+import static testdata.TextBoxData.*;
 
 
 public class TextBoxTest {

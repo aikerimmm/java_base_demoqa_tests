@@ -32,7 +32,7 @@ public class TextBoxPage {
     public TextBoxPage typeUserEmail(String value) {
         userEmailInput.setValue(value);
 
-        return this
+        return this;
     }
 
     public TextBoxPage typeCurrentAddress(String value) {
@@ -50,10 +50,12 @@ public class TextBoxPage {
     public TextBoxPage submitForm() {
         submitButton.click();
 
-        return this
+        return this;
     }
 
     public TextBoxPage checkField(String key, String value) {
         outputResults.$(byId(key)).shouldHave(text(value));
+
+        return this;
     }
 }
