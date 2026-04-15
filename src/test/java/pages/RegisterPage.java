@@ -143,7 +143,7 @@ public class RegisterPage {
     }
 
     public RegisterPage closeForm() {
-        closeButton().click();
+        closeButton.click();
 
         return this;
     }
