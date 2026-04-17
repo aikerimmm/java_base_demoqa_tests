@@ -6,8 +6,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static testdata.TextBoxData.currentAddress;
-import static testdata.TextBoxData.permanentAddress;
 
 public class TextBoxPage {
     //Elements

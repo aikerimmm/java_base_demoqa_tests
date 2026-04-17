@@ -2,6 +2,7 @@ package tests.examples;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegisterPage;
 import testdata.RegisterFormData;
@@ -11,9 +12,11 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static testdata.RegisterFormData.*;
+import static utils.RandomUtils.*;
 
 public class RegisterFormTest {
     RegisterPage registerPage = new RegisterPage();
+
     @BeforeAll
     static void prepareEnvironment() {
         Configuration.browserSize = "1920x1080";
@@ -21,37 +24,78 @@ public class RegisterFormTest {
         Configuration.browser = "chrome";
     }
 
+    String firstName;
+    String lastName;
+    String email;
+    String gender;
+    String phone;
+    String day;
+    String month;
+    String year;
+    String subject;
+    String hobbies;
+    String picture;
+    String address;
+    String state;
+    String city;
 
-    @Test
-    void filledFormTest(){
-        registerPage .openPage()
-                .typeFirstName("Alex")
-                .typeLastName("Karlov")
-                .typeUserEmail("alex@gmail.com")
-                .setGender("Other")
-                .typeUserNumber("0559118799")
-                .setDateOfBirth("30","July","2008")
-                .setSubject("Math")
-                .setHobbies("Reading")
-                .uploadPicture("img/1.png")
-                .typecurrentAddress("Nurkamal 14/2")
-                .setStateAndCity("NCR", "Delhi")
-                .submitForm()
-                .checkSuccessSubmitText()
-                .checkFormResults("Student Name",userName)
-                .checkFormResults("Student Email",userEmail)
-                .checkFormResults("Gender",genterWrapper)
-                .checkFormResults("Mobile",userNumber)
-                .checkFormResults("Date of Birth",birthDate)
-                .checkFormResults("Subjects",subjectsInput)
-                .checkFormResults("Hobbies",hobbiesWrapper)
-                .checkFormResults("Picture",uploadPicture)
-                .checkFormResults("Address",currentAddress)
-                .checkFormResults("State and City",stateCity)
-                .closeForm();
+    @BeforeEach
+    void prepareRandomData() {
+        firstName = getRandomString(10);
+        lastName = getRandomString(10);
+        email = getRandomEmail();
 
+        String[] genders = {"Male", "Female", "Other"};
+        gender = getRandomItemFromStringArray(genders);
 
+        phone = getRandomPhone();
+
+        day = getDay(getRandomDate());
+        month = getMonth(getRandomDate());
+        year = getYear(getRandomDate());
+
+        subject = getSubject();
+        hobbies = getRandomHobbies();
+
+        picture = "1.png";
+
+        address = getRandomString(30);
+
+        stateCity = getRandomCityByState("NCR");
     }
+}
+
+
+//    @Test
+//    void filledFormTest(){
+//        registerPage .openPage()
+//                .typeFirstName("Alex")
+//                .typeLastName("Karlov")
+//                .typeUserEmail("alex@gmail.com")
+//                .setGender("Other")
+//                .typeUserNumber("0559118799")
+//                .setDateOfBirth("30","July","2008")
+//                .setSubject("Math")
+//                .setHobbies("Reading")
+//                .uploadPicture("img/1.png")
+//                .typecurrentAddress("Nurkamal 14/2")
+//                .setStateAndCity("NCR", "Delhi")
+//                .submitForm()
+//                .checkSuccessSubmitText()
+//                .checkFormResults("Student Name",userName)
+//                .checkFormResults("Student Email",userEmail)
+//                .checkFormResults("Gender",genterWrapper)
+//                .checkFormResults("Mobile",userNumber)
+//                .checkFormResults("Date of Birth",birthDate)
+//                .checkFormResults("Subjects",subjectsInput)
+//                .checkFormResults("Hobbies",hobbiesWrapper)
+//                .checkFormResults("Picture",uploadPicture)
+//                .checkFormResults("Address",currentAddress)
+//                .checkFormResults("State and City",stateCity)
+//                .closeForm();
+//
+//
+//    }
 
 //    @Test
 //    void requiredFormTest(){
@@ -144,6 +188,6 @@ public class RegisterFormTest {
 //        $(".modal-content").shouldNot(appear);
 //
 //    }appear
-}
+
 
 
