@@ -14,11 +14,11 @@ public class RegisterPage {
     CalendarComponent calender = new CalendarComponent();
     JsSnippets jsSnippets = new JsSnippets();
 
-    private SelenideElement firstNameInput = $("firstName");
-    private SelenideElement lastNameInput = $("lastName");
-    private SelenideElement userEmailInput = $("emailName");
+    private SelenideElement firstNameInput = $("#firstName");
+    private SelenideElement lastNameInput = $("#lastName");
+    private SelenideElement userEmailInput = $("#userEmail");
     private SelenideElement genderContainer = $("#$(Other);");
-    private SelenideElement userNumber = $("userNumber");
+    private SelenideElement userNumber = $("#userNumber");
     private SelenideElement subjectContainer = $("#subjectsInput;");
     private SelenideElement hobbiesWrapper = $("#hobbiesWrapper;");
     private SelenideElement uploadPicture = $("#uploadPicture;");
