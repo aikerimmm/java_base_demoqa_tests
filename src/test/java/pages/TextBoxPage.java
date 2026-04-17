@@ -9,12 +9,13 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class TextBoxPage {
     //Elements
-    private SelenideElement userNameInput = $("[#userName]");
-    private SelenideElement userEmailInput = $("[#userEmail");
-    private SelenideElement userCurrentAddress = $("[#userCurrentAddress");
-    private SelenideElement userPermanentAddress = $("[#userPermanentAddress");
-    private SelenideElement submitButton = $("[#submit");
-    private SelenideElement outputResults = $("[#output]");
+    private SelenideElement userNameInput = $("#userName");
+    private SelenideElement userEmailInput = $("#userEmail");
+    private SelenideElement currentAddress = $("#currentAddress");
+    private SelenideElement permanentAddress = $("#permanentAddress");
+    private SelenideElement submitButton = $("#submit");
+    private SelenideElement outputResults = $("#output");
+
 
     //Actions
     public TextBoxPage openPage() {
@@ -36,13 +37,13 @@ public class TextBoxPage {
     }
 
     public TextBoxPage typeCurrentAddress(String value) {
-        userCurrentAddress.setValue(value);
+        currentAddress.setValue(value);
 
         return this;
     }
 
     public TextBoxPage typePermanentAddress(String value) {
-        userPermanentAddress.setValue(value);
+        permanentAddress.setValue(value);
 
         return this;
     }

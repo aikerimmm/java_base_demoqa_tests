@@ -2,20 +2,17 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import pages.components.Calendar.CalendarComponent;
-import testdata.RegisterFormData;
-
-import java.util.Calendar;
+import pages.components.CalendarComponent;
+import utils.JsSnippets;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class RegisterPage {
     CalendarComponent calender = new CalendarComponent();
+    JsSnippets jsSnippets = new JsSnippets();
 
     private SelenideElement firstNameInput = $("firstName");
     private SelenideElement lastNameInput = $("lastName");
@@ -35,8 +32,7 @@ public class RegisterPage {
     public RegisterPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        jsSnippets.removeAds();
         return this;
     }
 
@@ -134,16 +130,8 @@ public class RegisterPage {
         return this;
     }
 
-    public RegisterPage checkFormResults(String fieldName, String expectedValue) {
-        $(".table-responsive")
-                .$$( "tr")
-                .findBy(text(fieldName))
-                .shouldHave(text(expectedValue));
-        return this;
-    }
-
     public RegisterPage closeForm() {
-        closeButton().click();
+        closeButton.click();
 
         return this;
     }
