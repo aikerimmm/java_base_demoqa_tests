@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegisterPage;
+import pages.components.ResultFormComponent;
 import testdata.RegisterFormData;
 
 import static com.codeborne.selenide.Condition.appear;
@@ -16,6 +17,7 @@ import static utils.RandomUtils.*;
 
 public class RegisterFormTest {
     RegisterPage registerPage = new RegisterPage();
+    ResultFormComponent resultFormComponent = new ResultFormComponent();
 
     @BeforeAll
     static void prepareEnvironment() {
@@ -61,41 +63,44 @@ public class RegisterFormTest {
 
         address = getRandomString(30);
 
-        stateCity = getRandomCityByState("NCR");
+        state = "NCR";
+        city = getRandomCityByState(state);
+
+    }
+
+
+    @Test
+    void filledFormTest() {
+        registerPage.openPage()
+                .typeFirstName(firstName)
+                .typeLastName(lastName)
+                .typeUserEmail(userEmail)
+                .setGender(gender)
+                .typeUserNumber(phone)
+                .setDateOfBirth(day,month,year)
+                .setSubject(subject)
+                .setHobbies(hobbies)
+                .uploadPicture(picture)
+                .typecurrentAddress(address)
+                .setStateAndCity(state,city)
+                .submitForm()
+                .checkSuccessSubmitText();
+
+        resultFormComponent.checkFormResults("Student Name", firstName);
+        resultFormComponent.checkFormResults("Student Name", lastName);
+        resultFormComponent.checkFormResults("Student Email", userEmail);
+        resultFormComponent.checkFormResults("Gender", genterWrapper);
+        resultFormComponent.checkFormResults("Mobile", userNumber);
+        resultFormComponent.checkFormResults("Date of Birth", birthDate);
+        resultFormComponent.checkFormResults("Subjects", subjectsInput);
+        resultFormComponent.checkFormResults("Hobbies", hobbiesWrapper);
+        resultFormComponent.checkFormResults("Picture", uploadPicture);
+        resultFormComponent.checkFormResults("Address", currentAddress);
+        resultFormComponent.checkFormResults("State and City", stateCity);
+
+        registerPage.closeForm();
     }
 }
-
-
-//    @Test
-//    void filledFormTest(){
-//        registerPage .openPage()
-//                .typeFirstName("Alex")
-//                .typeLastName("Karlov")
-//                .typeUserEmail("alex@gmail.com")
-//                .setGender("Other")
-//                .typeUserNumber("0559118799")
-//                .setDateOfBirth("30","July","2008")
-//                .setSubject("Math")
-//                .setHobbies("Reading")
-//                .uploadPicture("img/1.png")
-//                .typecurrentAddress("Nurkamal 14/2")
-//                .setStateAndCity("NCR", "Delhi")
-//                .submitForm()
-//                .checkSuccessSubmitText()
-//                .checkFormResults("Student Name",userName)
-//                .checkFormResults("Student Email",userEmail)
-//                .checkFormResults("Gender",genterWrapper)
-//                .checkFormResults("Mobile",userNumber)
-//                .checkFormResults("Date of Birth",birthDate)
-//                .checkFormResults("Subjects",subjectsInput)
-//                .checkFormResults("Hobbies",hobbiesWrapper)
-//                .checkFormResults("Picture",uploadPicture)
-//                .checkFormResults("Address",currentAddress)
-//                .checkFormResults("State and City",stateCity)
-//                .closeForm();
-//
-//
-//    }
 
 //    @Test
 //    void requiredFormTest(){
