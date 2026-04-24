@@ -14,6 +14,6 @@ public class CalendarComponent {
     public void setDate(String day, String month, String year) {
         yearSelection.selectOption(year);
         monthSelection.selectOption(month);
-        dateSelection.$(byText(RegisterFormData.birthDate)).click();
+        dateSelection.$(byText(day)).click();
     }
-}
+    }
