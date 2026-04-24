@@ -50,6 +50,7 @@ public class RegisterFormTest {
         String[] genders = {"Male", "Female", "Other"};
         gender = getRandomItemFromStringArray(genders);
 
+
         phone = getRandomPhone();
 
         day = getDay(getRandomDate());
@@ -75,7 +76,7 @@ public class RegisterFormTest {
                 .typeFirstName(firstName)
                 .typeLastName(lastName)
                 .typeUserEmail(userEmail)
-                .setGender(gender)
+                .setGender(genterWrapper)
                 .typeUserNumber(phone)
                 .setDateOfBirth(day,month,year)
                 .setSubject(subject)

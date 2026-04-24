@@ -3,36 +3,36 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
-import utils.JsSnippets;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static utils.JsSnippets.removeAds;
 
 public class RegisterPage {
     CalendarComponent calender = new CalendarComponent();
-    JsSnippets jsSnippets = new JsSnippets();
 
     private SelenideElement firstNameInput = $("#firstName");
     private SelenideElement lastNameInput = $("#lastName");
     private SelenideElement userEmailInput = $("#userEmail");
-    private SelenideElement genderContainer = $("#$(Other);");
+    private SelenideElement genderWrapper = $("#genterWrapper");
     private SelenideElement userNumber = $("#userNumber");
-    private SelenideElement subjectContainer = $("#subjectsInput;");
-    private SelenideElement hobbiesWrapper = $("#hobbiesWrapper;");
-    private SelenideElement uploadPicture = $("#uploadPicture;");
-    private SelenideElement currentAddress = $("#currentAddress;");
+    private SelenideElement subjectContainer = $("#subjectsInput");
+    private SelenideElement hobbiesWrapper = $("#hobbiesWrapper");
+    private SelenideElement uploadPicture = $("#uploadPicture");
+    private SelenideElement currentAddress = $("#currentAddress");
     private SelenideElement stateSelelct = $("#state");
     private SelenideElement citySelect = $("#city");
-    private SelenideElement stateCityContainer = $("#stateCity-wrapper;");
+    private SelenideElement stateCityContainer = $("#stateCity-wrapper");
     private SelenideElement submitButton = $("[#submit");
-    private SelenideElement closeButton = $("#closeLargeModal;");
+    private SelenideElement closeButton = $("#closeLargeModal");
 
     public RegisterPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        jsSnippets.removeAds();
+        removeAds();
         return this;
     }
 
@@ -54,9 +54,9 @@ public class RegisterPage {
         return this;
     }
 
-    public RegisterPage setGender(String value) {
-        genderContainer.$(byText(value)).click();
 
+    public RegisterPage setGender(String gender) {
+        genderWrapper.$(byText(gender)).click();
         return this;
     }
 
