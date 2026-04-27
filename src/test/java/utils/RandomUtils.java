@@ -1,7 +1,5 @@
 package utils;
 
-import org.junit.jupiter.api.Test;
-
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -17,16 +15,6 @@ import java.util.Map;
 public class RandomUtils {
 
     private static final Random random = new Random();
-
-    public static void main(String[] args) {
-        System.out.println(RandomUtils.getRandomString(8));
-        System.out.println(RandomUtils.getRandomEmail());
-        System.out.println(RandomUtils.getRandomPhone());
-        System.out.println(getRandomInt(0, 999999));
-        System.out.println(getRandomInt(111111111, 888888888));
-        System.out.println(RandomUtils.getRandomGender());
-
-    }
 
     public static String getRandomString(int length) {
         String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -54,14 +42,6 @@ public class RandomUtils {
         return format(phoneTemplate, getRandomInt(1, 9), getRandomInt(111, 999),
                 getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
     }
-
-//    public static String getRandomGender() {
-//        String[] genders = {"Male","Female","Other"};
-//
-//        int randomIndex = getRandomInt(0,2);
-//
-//        return genders[randomIndex];
-//    }
 
     public static String getRandomGender() {
         String[] genders = {"Male", "Female", "Other"};
