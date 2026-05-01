@@ -1,20 +1,23 @@
 package testdata;
 
+import static utils.RandomUtils.*;
+
 public class RegisterFormData {
-    public static String userName = "Amir";
-    public static String lastname = "Dastan";
-    public static String userEmail = "amir@gmail.com";
-    public static String userNumber = "0559118799";
-    public static String genterWrapper = "Male";
-    public static String birthYear = "1999";
-    public static String birthMonth = "July";
-    public static String birthDate = "15";
-    public static String subjectsInput = "English";
-    public static String hobbiesWrapper = "Sports";
-    public static String uploadPicture = "IMG_1075.JPG";
-    public static String currentAddress = "Nurkamal 14/2";
-    public static String stateCity = "NCR";
-    public static String stateCity2 = "Gurgaon";
+    public String firstName = getRandomString(10);
+    public String lastName = getRandomString(10);
+    public String email = getRandomEmail();
+    public String userNumber = getRandomPhone();
+    public String[] genders = {"Male", "Female", "Other"};
+    public String genterWrapper = getRandomItemFromStringArray(genders);
+    public String birthYear = getYear(getRandomDate());
+    public String birthMonth = getMonth(getRandomDate());
+    public String birthDate = getDay(getRandomDate());
+    public String subjectsInput = getSubject();
+    public String hobbiesWrapper = getRandomHobbies();
+    public String uploadPicture = "1.png";
+    public String currentAddress = getRandomString(30);
+    public String state = "NCR";
+    public String city = getRandomCityByState(state);
 
 }
 
