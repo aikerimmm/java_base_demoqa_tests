@@ -1,0 +1,9 @@
+{
+  "book": "Materinskoe pole",
+  "country": "Kyrgyzstan",
+  "yearPublished": 1990,
+  "authors": [
+    {"name": "Aitmatov", "theme": "war"},
+    {"name": "Tolstoi", "theme": "war and piece"}
+  ]
+}

@@ -1,3 +1,5 @@
+package qa.guru;
+
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -26,7 +28,6 @@ public class ZipTest {
             while ((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
 
-                // пропускаем мусор от Mac
                 if (name.startsWith("__MACOSX") || name.startsWith(".")) {
                     zis.closeEntry();
                     continue;
@@ -48,7 +49,6 @@ public class ZipTest {
         }
     }
 
-
     void checkPdf(byte[] bytes) throws Exception {
         try (PDDocument doc = Loader.loadPDF(bytes)) {
             String text = new PDFTextStripper().getText(doc);
@@ -56,6 +56,7 @@ public class ZipTest {
             assertFalse(text.isBlank(), "PDF не должен быть пустым");
         }
     }
+
     void checkXlsx(byte[] bytes) throws Exception {
         try (XSSFWorkbook wb = new XSSFWorkbook(new ByteArrayInputStream(bytes))) {
             var sheet = wb.getSheetAt(0);
